@@ -16,7 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Hospital extends AppCompatActivity implements OnMapReadyCallback,View.OnClickListener {
     GoogleMap map;
-    Button  btnMarker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,7 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback,Vi
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync( this);
         map = mapFragment.getMap();
-        btnMarker = (Button) findViewById(R.id.btnMarker);
-        btnMarker.setOnClickListener(this);
+
 
     }
 
@@ -38,11 +37,6 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback,Vi
 
     @Override
     public void onClick(View v) {
-        LatLng nlu = new LatLng(10.8719808,106.7925977);
-        MarkerOptions posNLU = new MarkerOptions();
 
-        posNLU.position(nlu);
-        posNLU.title("NLU");
-        Marker marker = map.addMarker(posNLU);
     }
 }
