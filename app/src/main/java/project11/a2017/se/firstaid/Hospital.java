@@ -27,7 +27,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class Hospital extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
+public class Hospital extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener,LocationListener {
     public static final int REQUEST_ID_ACCESS_COURSE_FINE_LOCATION = 100;
     private static final String MYTAG = "MYTAG";
     GoogleMap map;
@@ -50,7 +50,14 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
         map = googleMap;
         googleMap.setBuildingsEnabled(true);
         googleMap.getUiSettings().setCompassEnabled(true);
-        checkPermissions();
+
+        map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                checkPermissions();
+
+            }
+        });
         googleMap.setMyLocationEnabled(true);
 
 
@@ -175,4 +182,23 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
         }
         return bestProvider;}
 
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }
