@@ -27,6 +27,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
 public class Hospital extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener,LocationListener {
     public static final int REQUEST_ID_ACCESS_COURSE_FINE_LOCATION = 100;
     private static final String MYTAG = "MYTAG";
@@ -41,12 +44,12 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         map = mapFragment.getMap();
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
         }else {
-            String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION};
+            String[] permissions = new String[]{ACCESS_COARSE_LOCATION,
+                    ACCESS_FINE_LOCATION};
 
             // Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
             ActivityCompat.requestPermissions(this,permissions,REQUEST_ID_ACCESS_COURSE_FINE_LOCATION);
@@ -84,17 +87,17 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
         // Với API >= 23, bạn phải hỏi người dùng cho phép xem vị trí của họ.
         if (Build.VERSION.SDK_INT >= 23) {
             int accessCoarsePermission
-                    = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+                    = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
             int accessFinePermission
-                    = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+                    = ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION);
 
 
             if (accessCoarsePermission != PackageManager.PERMISSION_GRANTED
                     || accessFinePermission != PackageManager.PERMISSION_GRANTED) {
 
                 // Các quyền cần người dùng cho phép.
-                String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_FINE_LOCATION};
+                String[] permissions = new String[]{ACCESS_COARSE_LOCATION,
+                        ACCESS_FINE_LOCATION};
 
                 // Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
                 ActivityCompat.requestPermissions(this,permissions,REQUEST_ID_ACCESS_COURSE_FINE_LOCATION);
