@@ -30,13 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Hospital" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-
-
-
-            </intent-filter>
         </activity>
         <activity android:name=".Tab1" />
         <activity android:name=".Tab2"></activity>
