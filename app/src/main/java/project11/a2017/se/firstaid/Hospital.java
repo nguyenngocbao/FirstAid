@@ -41,7 +41,8 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback,Vi
         map = googleMap;
         googleMap.setBuildingsEnabled(true);
         googleMap.getUiSettings().setCompassEnabled(true);
-        googleMap.setMyLocationEnabled(true);
+        checkPermissions();
+        //googleMap.setMyLocationEnabled(true);
 
 
     }
