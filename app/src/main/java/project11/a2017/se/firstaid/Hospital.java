@@ -2,6 +2,7 @@ package project11.a2017.se.firstaid;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -53,7 +54,8 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                     ACCESS_FINE_LOCATION};
 
             // Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
-            ActivityCompat.requestPermissions(this,permissions,REQUEST_ID_ACCESS_COURSE_FINE_LOCATION);
+            ActivityCompat.requestPermissions(new MainActivity(),permissions,REQUEST_ID_ACCESS_COURSE_FINE_LOCATION);
+
             LatLng sydney = new LatLng(-34, 151);
             map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
             map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
