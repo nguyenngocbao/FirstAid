@@ -45,6 +45,7 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                 == PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
         }else {
+            askPermissionsAndShowMyLocation();
             LatLng sydney = new LatLng(-34, 151);
             map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
             map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
@@ -64,7 +65,7 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                askPermissionsAndShowMyLocation();
+
 
 
             }
@@ -92,8 +93,7 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                         Manifest.permission.ACCESS_FINE_LOCATION};
 
                 // Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
-                ActivityCompat.requestPermissions(this, permissions,
-                        REQUEST_ID_ACCESS_COURSE_FINE_LOCATION);
+                ActivityCompat.requestPermissions(this,permissions,REQUEST_ID_ACCESS_COURSE_FINE_LOCATION);
 
                 return;
             }
