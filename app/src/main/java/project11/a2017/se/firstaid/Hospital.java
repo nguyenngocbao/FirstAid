@@ -85,94 +85,94 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                 return;
             }
         }
-      //  this.showMyLocation();
+       this.showMyLocation();
     }
 
-//    private void showMyLocation() {
-//
-//
-//        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-//
-//        String locationProvider = this.getEnabledLocationProvider();
-//
-//        if (locationProvider == null) {
-//            return;
-//        }
-//
-//        // Millisecond
-//        final long MIN_TIME_BW_UPDATES = 1000;
-//        // Met
-//        final float MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;
-//
-//        Location myLocation = null;
-//        try {
-//
-//            // Đoạn code nay cần người dùng cho phép (Hỏi ở trên ***).
-//            locationManager.requestLocationUpdates(
-//                    locationProvider,
-//                    MIN_TIME_BW_UPDATES,
-//                    MIN_DISTANCE_CHANGE_FOR_UPDATES, (LocationListener) this);
-//
-//            // Lấy ra vị trí.
-//            myLocation = locationManager
-//                    .getLastKnownLocation(locationProvider);
-//        }
-//        // Với Android API >= 23 phải catch SecurityException.
-//        catch (SecurityException e) {
-//            Toast.makeText(this, "Show My Location Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-//            Log.e(MYTAG, "Show My Location Error:" + e.getMessage());
-//            e.printStackTrace();
-//            return;
-//        }
-//
-//        if (myLocation != null) {
-//
-//            LatLng latLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-//            map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
-//
-//            CameraPosition cameraPosition = new CameraPosition.Builder()
-//
-//                    .target(latLng)             // Sets the center of the map to location user
-//                    .zoom(15)                   // Sets the zoom
-//                    .bearing(90)                // Sets the orientation of the camera to east
-//                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
-//                    .build();                   // Creates a CameraPosition from the builder
-//            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//
-//            // Thêm Marker cho Map:
-//            MarkerOptions option = new MarkerOptions();
-//            option.title("My Location");
-//            option.snippet("....");
-//            option.position(latLng);
-//            Marker currentMarker = map.addMarker(option);
-//            currentMarker.showInfoWindow();
-//        } else {
-//            Toast.makeText(this, "Location not found!", Toast.LENGTH_LONG).show();
-//            Log.i(MYTAG, "Location not found");
-//        }
+    private void showMyLocation() {
 
 
-   // }
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        String locationProvider = this.getEnabledLocationProvider();
+
+        if (locationProvider == null) {
+            return;
+        }
+
+        // Millisecond
+        final long MIN_TIME_BW_UPDATES = 1000;
+        // Met
+        final float MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;
+
+        Location myLocation = null;
+        try {
+
+            // Đoạn code nay cần người dùng cho phép (Hỏi ở trên ***).
+            locationManager.requestLocationUpdates(
+                    locationProvider,
+                    MIN_TIME_BW_UPDATES,
+                    MIN_DISTANCE_CHANGE_FOR_UPDATES, (LocationListener) this);
+
+            // Lấy ra vị trí.
+            myLocation = locationManager
+                    .getLastKnownLocation(locationProvider);
+        }
+        // Với Android API >= 23 phải catch SecurityException.
+        catch (SecurityException e) {
+            Toast.makeText(this, "Show My Location Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(MYTAG, "Show My Location Error:" + e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+        if (myLocation != null) {
+
+            LatLng latLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+
+                    .target(latLng)             // Sets the center of the map to location user
+                    .zoom(15)                   // Sets the zoom
+                    .bearing(90)                // Sets the orientation of the camera to east
+                    .tilt(40)                   // Sets the tilt of the camera to 30 degrees
+                    .build();                   // Creates a CameraPosition from the builder
+            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+            // Thêm Marker cho Map:
+            MarkerOptions option = new MarkerOptions();
+            option.title("My Location");
+            option.snippet("....");
+            option.position(latLng);
+            Marker currentMarker = map.addMarker(option);
+            currentMarker.showInfoWindow();
+        } else {
+            Toast.makeText(this, "Location not found!", Toast.LENGTH_LONG).show();
+            Log.i(MYTAG, "Location not found");
+        }
 
 
-//    private String getEnabledLocationProvider() {
-//        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-//
-//
-//        // Tiêu chí để tìm một nhà cung cấp vị trí.
-//        Criteria criteria = new Criteria();
-//
-//        // Tìm một nhà cung vị trí hiện thời tốt nhất theo tiêu chí trên.
-//        // ==> "gps", "network",...
-//        String bestProvider = locationManager.getBestProvider(criteria, true);
-//
-//        boolean enabled = locationManager.isProviderEnabled(bestProvider);
-//
-//        if (!enabled) {
-//            Toast.makeText(this, "No location provider enabled!", Toast.LENGTH_LONG).show();
-//            Log.i(MYTAG, "No location provider enabled!");
-//            return null;
-//        }
-//        return bestProvider;
+    }
+
+
+    private String getEnabledLocationProvider() {
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+
+        // Tiêu chí để tìm một nhà cung cấp vị trí.
+        Criteria criteria = new Criteria();
+
+        // Tìm một nhà cung vị trí hiện thời tốt nhất theo tiêu chí trên.
+        // ==> "gps", "network",...
+        String bestProvider = locationManager.getBestProvider(criteria, true);
+
+        boolean enabled = locationManager.isProviderEnabled(bestProvider);
+
+        if (!enabled) {
+            Toast.makeText(this, "No location provider enabled!", Toast.LENGTH_LONG).show();
+            Log.i(MYTAG, "No location provider enabled!");
+            return null;
+        }
+        return bestProvider;}
 
 }
