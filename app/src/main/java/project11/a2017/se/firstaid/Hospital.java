@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class Hospital extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener,LocationListener {
     public static final int REQUEST_ID_ACCESS_COURSE_FINE_LOCATION = 100;
@@ -45,7 +46,7 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
         mapFragment.getMapAsync(this);
         map = mapFragment.getMap();
         if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+                == PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
         }else {
             String[] permissions = new String[]{ACCESS_COARSE_LOCATION,
@@ -92,8 +93,8 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                     = ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION);
 
 
-            if (accessCoarsePermission != PackageManager.PERMISSION_GRANTED
-                    || accessFinePermission != PackageManager.PERMISSION_GRANTED) {
+            if (accessCoarsePermission != PERMISSION_GRANTED
+                    || accessFinePermission != PERMISSION_GRANTED) {
 
                 // Các quyền cần người dùng cho phép.
                 String[] permissions = new String[]{ACCESS_COARSE_LOCATION,
