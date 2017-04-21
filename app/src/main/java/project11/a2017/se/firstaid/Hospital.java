@@ -41,6 +41,15 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         map = mapFragment.getMap();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            map.setMyLocationEnabled(true);
+        }else {
+            LatLng sydney = new LatLng(-34, 151);
+            map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+            map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        }
 
 
     }
@@ -58,7 +67,7 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
 
             }
         });
-        googleMap.setMyLocationEnabled(true);
+
 
 
     }
