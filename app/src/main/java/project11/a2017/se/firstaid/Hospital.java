@@ -64,7 +64,8 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                checkPermissions();
+                askPermissionsAndShowMyLocation();
+
 
             }
         });
@@ -72,15 +73,10 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
 
 
     }
+    private void askPermissionsAndShowMyLocation() {
 
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    /*check xin quyền */
-    public void checkPermissions() {
+        // Với API >= 23, bạn phải hỏi người dùng cho phép xem vị trí của họ.
         if (Build.VERSION.SDK_INT >= 23) {
             int accessCoarsePermission
                     = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
@@ -102,11 +98,33 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                 return;
             }
         }
-       this.showMyLocation();
+
+        // Hiển thị vị trí hiện thời trên bản đồ.
+        this.showMyLocation();
+    }
+    // Tìm một nhà cung cấp vị trị hiện thời đang được mở.
+    private String getEnabledLocationProvider() {
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+
+        // Tiêu chí để tìm một nhà cung cấp vị trí.
+        Criteria criteria = new Criteria();
+
+        // Tìm một nhà cung vị trí hiện thời tốt nhất theo tiêu chí trên.
+        // ==> "gps", "network",...
+        String bestProvider = locationManager.getBestProvider(criteria, true);
+
+        boolean enabled = locationManager.isProviderEnabled(bestProvider);
+
+        if (!enabled) {
+            Toast.makeText(this, "No location provider enabled!", Toast.LENGTH_LONG).show();
+            Log.i(MYTAG, "No location provider enabled!");
+            return null;
+        }
+        return bestProvider;
     }
 
     private void showMyLocation() {
-
 
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
@@ -172,25 +190,13 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
     }
 
 
-    private String getEnabledLocationProvider() {
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+    @Override
+    public void onClick(View v) {
+
+    }
 
 
-        // Tiêu chí để tìm một nhà cung cấp vị trí.
-        Criteria criteria = new Criteria();
-
-        // Tìm một nhà cung vị trí hiện thời tốt nhất theo tiêu chí trên.
-        // ==> "gps", "network",...
-        String bestProvider = locationManager.getBestProvider(criteria, true);
-
-        boolean enabled = locationManager.isProviderEnabled(bestProvider);
-
-        if (!enabled) {
-            Toast.makeText(this, "No location provider enabled!", Toast.LENGTH_LONG).show();
-            Log.i(MYTAG, "No location provider enabled!");
-            return null;
-        }
-        return bestProvider;}
 
     @Override
     public void onLocationChanged(Location location) {
