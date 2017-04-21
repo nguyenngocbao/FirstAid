@@ -6,14 +6,9 @@
     android:layout_height="match_parent"
     tools:context="project11.a2017.se.firstaid.Tab1"
     android:orientation="vertical"
-    android:layout_marginTop="60dp">
+    android:layout_marginTop="50dp">
 
 
-    <Button
-        android:id="@+id/btnMarker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thêm Marker"/>
 
     <fragment
 

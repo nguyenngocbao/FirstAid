@@ -1,7 +1,12 @@
 package project11.a2017.se.firstaid;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +20,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Hospital extends AppCompatActivity implements OnMapReadyCallback,View.OnClickListener {
+    public static final int REQUEST_ID_ACCESS_COURSE_FINE_LOCATION = 100;
     GoogleMap map;
-    Button  btnMarker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,23 +32,47 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback,Vi
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync( this);
         map = mapFragment.getMap();
-        btnMarker = (Button) findViewById(R.id.btnMarker);
-        btnMarker.setOnClickListener(this);
+
 
     }
 
-    @Override
+
     public void onMapReady(GoogleMap googleMap) {
+        map = googleMap;
+        googleMap.setBuildingsEnabled(true);
+        googleMap.getUiSettings().setCompassEnabled(true);
+        googleMap.setMyLocationEnabled(true);
+
 
     }
+
 
     @Override
     public void onClick(View v) {
-        LatLng nlu = new LatLng(10.8719808,106.7925977);
-        MarkerOptions posNLU = new MarkerOptions();
 
-        posNLU.position(nlu);
-        posNLU.title("NLU");
-        Marker marker = map.addMarker(posNLU);
+    }
+    /*check xin quyền */
+    public void checkPermissions() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            int accessCoarsePermission
+                    = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+            int accessFinePermission
+                    = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+
+
+            if (accessCoarsePermission != PackageManager.PERMISSION_GRANTED
+                    || accessFinePermission != PackageManager.PERMISSION_GRANTED) {
+
+                // Các quyền cần người dùng cho phép.
+                String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION};
+
+                // Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
+                ActivityCompat.requestPermissions(this, permissions,
+                        REQUEST_ID_ACCESS_COURSE_FINE_LOCATION);
+
+                return;
+            }
+        }
     }
 }

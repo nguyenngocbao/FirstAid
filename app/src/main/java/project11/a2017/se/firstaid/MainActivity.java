@@ -20,21 +20,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mLam = new LocalActivityManager(this, false);
-        mLam.dispatchCreate(savedInstanceState);
-        tabHost =(TabHost) findViewById(R.id.tabHost);
 
-        tabHost.setup(mLam);
 
         createAppBar();
-        createTabHost();
+        createTabHost(savedInstanceState);
     }
     public void createAppBar(){
         toolbar = (Toolbar)findViewById(R.id.toolBar);
       setSupportActionBar(toolbar);
     }
 
-    public void createTabHost(){
+    public void createTabHost(Bundle savedInstanceState){
+        mLam = new LocalActivityManager(this, false);
+        mLam.dispatchCreate(savedInstanceState);
+        tabHost =(TabHost) findViewById(R.id.tabHost);
+
+        tabHost.setup(mLam);
         //tab 1
         TabHost.TabSpec tab1 = tabHost.newTabSpec("Sơ Cứu");
         tab1.setIndicator("Sơ cứu");
