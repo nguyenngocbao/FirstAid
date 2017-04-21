@@ -13,7 +13,28 @@
         android:layout_height="40dp"
         android:background="#f42d09"
 
-        android:elevation="0dp"></android.support.v7.widget.Toolbar>
+        android:elevation="0dp" >
+        
+        <ImageButton
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:background="#f42d09"
+            android:src="@drawable/logo"
+            >
+        </ImageButton>
+
+        <ImageButton
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_marginLeft="250dp"
+            android:background="#f42d09"
+            android:src="@drawable/seach"
+            >
+        </ImageButton>
+
+
+    </android.support.v7.widget.Toolbar>
+
     <TabHost
 
         android:id="@+id/tabHost"
@@ -38,13 +59,10 @@
             android:gravity="center"></TabWidget>
 
 
-
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
+            android:layout_height="match_parent">
 
         </FrameLayout>
 
