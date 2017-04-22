@@ -32,7 +32,7 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
-public class Hospital extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener,LocationListener {
+public class Hospital extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
     public static final int REQUEST_ID_ACCESS_COURSE_FINE_LOCATION = 100;
 
     GoogleMap map;
@@ -55,12 +55,9 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
 
             // Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(permissions,REQUEST_ID_ACCESS_COURSE_FINE_LOCATION);
-            }
 
-            LatLng sydney = new LatLng(-34, 151);
-            map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                ActivityCompat.requestPermissions(this.getParent(),permissions,1);
+            }
 
         }
 
@@ -88,32 +85,8 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
     }
 
 
-
-
     @Override
     public void onClick(View v) {
-
-    }
-
-
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
 
     }
 }

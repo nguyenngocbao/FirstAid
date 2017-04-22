@@ -24,13 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] permissions = new String[]{ACCESS_COARSE_LOCATION,
-                ACCESS_FINE_LOCATION};
 
-        // Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(permissions,1);
-        }
 
 
 
