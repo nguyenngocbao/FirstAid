@@ -55,13 +55,19 @@ public class MainActivity extends AppCompatActivity {
         Intent tabIntent2 = new Intent(this,Tab2.class);
         tab2.setContent(tabIntent2);
         tabHost.addTab(tab2);
-
         //tab 3
         TabHost.TabSpec tab3 = tabHost.newTabSpec("Bệnh viện");
-        tab3.setIndicator("Bệnh Viện");
-        Intent tabIntent3 = new Intent(this,Hospital.class);
+        tab3.setIndicator("Khẩn Cấp");
+        Intent tabIntent3 = new Intent(this,Tab3.class);
         tab3.setContent(tabIntent3);
         tabHost.addTab(tab3);
+
+        //tab 3
+        TabHost.TabSpec tab4 = tabHost.newTabSpec("Bệnh viện");
+        tab4.setIndicator("Bệnh Viện");
+        Intent tabIntent4 = new Intent(this,Hospital.class);
+        tab4.setContent(tabIntent4);
+        tabHost.addTab(tab4);
     }
 
     @Override
