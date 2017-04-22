@@ -46,21 +46,6 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         map = mapFragment.getMap();
-        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION)
-                == PERMISSION_GRANTED) {
-            map.setMyLocationEnabled(true);
-        }else {
-            String[] permissions = new String[]{ACCESS_COARSE_LOCATION,
-                    ACCESS_FINE_LOCATION};
-
-            // Hiển thị một Dialog hỏi người dùng cho phép các quyền trên.
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                ActivityCompat.requestPermissions(this.getParent(),permissions,1);
-            }
-
-        }
-
 
 
     }
@@ -70,16 +55,15 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
         map = googleMap;
         googleMap.setBuildingsEnabled(true);
         googleMap.getUiSettings().setCompassEnabled(true);
+        askPermissionsLocation();
 
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
 
 
-
             }
         });
-
 
 
     }
@@ -87,6 +71,23 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    public void askPermissionsLocation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            String[] permissions = new String[]{ACCESS_COARSE_LOCATION,
+                    ACCESS_FINE_LOCATION};
+
+            ActivityCompat.requestPermissions(this.getParent(), permissions, 1);
+            if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION)
+                    == PERMISSION_GRANTED) {
+                map.setMyLocationEnabled(true);
+            }
+        }else {
+            map.setMyLocationEnabled(true);
+
+        }
 
     }
 }
