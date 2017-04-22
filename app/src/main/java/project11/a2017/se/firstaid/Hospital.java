@@ -34,7 +34,7 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class Hospital extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener,LocationListener {
     public static final int REQUEST_ID_ACCESS_COURSE_FINE_LOCATION = 100;
-    private static final String MYTAG = "MYTAG";
+
     GoogleMap map;
 
 
