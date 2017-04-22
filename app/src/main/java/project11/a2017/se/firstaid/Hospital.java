@@ -81,13 +81,11 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                     ACCESS_FINE_LOCATION};
 
             ActivityCompat.requestPermissions(this.getParent(), permissions, 1);
-            if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION)
-                    == PERMISSION_GRANTED) {
-                map.setMyLocationEnabled(true);
-            }
-        }else {
-            map.setMyLocationEnabled(true);
 
+        }
+        if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION)
+                == PERMISSION_GRANTED) {
+            map.setMyLocationEnabled(true);
         }
 
     }
