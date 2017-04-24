@@ -18,9 +18,14 @@ public class Tab1 extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(this,Test.class);
+                doA();
+
 
             }
         });
+    }
+    public void doA(){
+        Intent in = new Intent(this,Test.class);
+        startActivity(in);
     }
 }
