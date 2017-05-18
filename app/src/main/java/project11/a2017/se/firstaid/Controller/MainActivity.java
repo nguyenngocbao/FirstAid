@@ -1,24 +1,25 @@
-package project11.a2017.se.firstaid;
+package project11.a2017.se.firstaid.Controller;
 
-import android.app.Activity;
-import android.app.ActivityGroup;
 import android.app.LocalActivityManager;
-import android.app.TabActivity;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TabHost;
+import android.widget.Toast;
 
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import project11.a2017.se.firstaid.R;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     TabHost tabHost;
     LocalActivityManager mLam;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         createAppBar();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setTitle(" ");
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setHomeAsUpIndicator(R.drawable.home);
         createTabHost(savedInstanceState);
     }
     public void createAppBar(){
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         //tab 3
         TabHost.TabSpec tab4 = tabHost.newTabSpec("Bệnh viện");
         tab4.setIndicator("Bệnh Viện");
-        Intent tabIntent4 = new Intent(this,Hospital.class);
+        Intent tabIntent4 = new Intent(this,HospitalActivity.class);
         tab4.setContent(tabIntent4);
         tabHost.addTab(tab4);
     }
@@ -80,5 +86,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
         mLam.dispatchPause(isFinishing());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_left, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.search:
+                    Toast.makeText(this, "Search button", Toast.LENGTH_SHORT).show();
+                    break;
+
+        }
+
+       return super.onOptionsItemSelected(item);
     }
 }

@@ -4,12 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project11.a2017.se.firstaid.Tab2">
+    tools:context="project11.a2017.se.firstaid.Controller.Tab2"
+    android:orientation="vertical">
+    o
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tab1"
 
         android:textColor="#101010"/>
+    <Button android:id="@+id/call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

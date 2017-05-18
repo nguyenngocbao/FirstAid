@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
 
-    tools:context="project11.a2017.se.firstaid.Tab1"
-  >
-
-    <TextView
-        android:id="@+id/textView"
+    tools:context="project11.a2017.se.firstaid.Controller.MainActivity">
+    <include
+        android:id="@+id/webview"
+        layout="@layout/video_layout"
+        android:layout_height="200dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        >
 
-        android:text="tab1"
-        android:textColor="#101010" />
+    </include>
 
-    <Button
-        android:id="@+id/button"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:layout_height="match_parent"
+        android:id="@+id/listviewtab1"
+        android:layout_below="@+id/webview"
+        ></ListView>
 
-        android:text="Button" />
+</RelativeLayout>
 
-</LinearLayout>

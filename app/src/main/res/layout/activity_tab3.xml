@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project11.a2017.se.firstaid.Tab3">
+    tools:context="project11.a2017.se.firstaid.Controller.Tab3">
 
 </LinearLayout>

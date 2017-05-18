@@ -6,34 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="project11.a2017.se.firstaid.MainActivity">
-    <android.support.v7.widget.Toolbar
+    tools:context="project11.a2017.se.firstaid.Controller.MainActivity">
+
+    <include
         android:id="@+id/toolBar"
+        layout="@layout/layout_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#f42d09"
-
-        android:elevation="0dp" >
-        
-        <ImageButton
-            android:layout_height="50dp"
-            android:layout_width="50dp"
-            android:background="#f42d09"
-            android:src="@drawable/logo"
-            >
-        </ImageButton>
-
-        <ImageButton
-            android:layout_height="50dp"
-            android:layout_width="50dp"
-            android:layout_marginLeft="250dp"
-            android:background="#f42d09"
-            android:src="@drawable/seach"
-            >
-        </ImageButton>
-
-
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content"></include>
 
     <TabHost
 
@@ -53,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:background="#f42d09"
+            android:background="#d11414"
 
 
 

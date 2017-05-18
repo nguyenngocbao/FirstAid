@@ -1,26 +1,35 @@
-package project11.a2017.se.firstaid;
-
-import android.Manifest;
+package project11.a2017.se.firstaid.Controller;
 
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-;
 import android.view.View;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import project11.a2017.se.firstaid.Adapter.HospitalBaseAdapter;
+import project11.a2017.se.firstaid.Adapter.InforHospitalAdapter;
+import project11.a2017.se.firstaid.Model.Hospital;
+import project11.a2017.se.firstaid.R;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
-public class Hospital extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
+;
+
+public class HospitalActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
 
     GoogleMap map;
@@ -34,6 +43,7 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         map = mapFragment.getMap();
+        addMaker();
 
 
     }
@@ -60,6 +70,29 @@ public class Hospital extends AppCompatActivity implements OnMapReadyCallback, V
 
     @Override
     public void onClick(View v) {
+
+    }
+    public void addMaker(){
+
+        List<Hospital> listHis = new HospitalBaseAdapter().getListHos();
+        HashMap<String,Hospital> list = new HashMap<>();
+        for (Hospital item: listHis
+             ) {
+            MarkerOptions pos = new MarkerOptions();
+
+            pos.position(new LatLng(item.getViTri().getKinhDo(),item.getViTri().getViDo()));
+
+
+            Marker marker = map.addMarker(pos);
+            list.put(marker.getId(),item);
+
+
+
+
+
+        }
+        map.setInfoWindowAdapter(new InforHospitalAdapter(HospitalActivity.this,list));
+
 
     }
 

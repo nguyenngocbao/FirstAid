@@ -1,7 +1,9 @@
-package project11.a2017.se.firstaid;
+package project11.a2017.se.firstaid.Controller;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import project11.a2017.se.firstaid.R;
 
 public class Tab3 extends AppCompatActivity {
 

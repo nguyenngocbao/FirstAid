@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/imageview"
+        />
+    <TextView
+        android:id="@+id/lessionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageview"
+        android:text="noi dung text"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/lessionContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageview"
+        android:layout_below="@+id/lessionName"
+        android:text="noi dung text"
+        android:textSize="20dp"
+        />
+</RelativeLayout>
